@@ -5,14 +5,18 @@ var assignment = new mongoose.Schema({
         required: true,
         unique: true
     },
+    assignment_id: {
+        required: true,
+        type: Number,
+    },
     deadline: {
         type: Date,
         required: true
     },
 
-    description : {
+    description: {
         type: String,
-        required : true
+        required: true
     },
     subject: {
         type: string,

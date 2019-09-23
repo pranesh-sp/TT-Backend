@@ -9,11 +9,6 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
-    roll_no : {
-        type: String,
-        required : true
-    },
     email: {
         type: email,
         required: true,
