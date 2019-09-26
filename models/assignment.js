@@ -10,7 +10,7 @@ var assignment = new mongoose.Schema({
         type: Number,
     },
     deadline: {
-        type: Date,
+        type: String,
         required: true
     },
 
@@ -19,12 +19,14 @@ var assignment = new mongoose.Schema({
         required: true
     },
     subject: {
-        type: string,
+        type: String,
         required: true,
         unique: true
     }
 });
-mongoose.model('assignment', assignment);
+
+
+mongoose.model('assignment',assignment);
 
 
 module.exports = mongoose.model('assignment');

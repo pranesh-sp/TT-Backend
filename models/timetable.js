@@ -30,9 +30,9 @@ var timetable = new mongoose.Schema({
 
     }
 
-   
+
 });
-mongoose.model('timetable', assignment);
+mongoose.model('timetable', timetable);
 
 
 module.exports = mongoose.model('timetable');
