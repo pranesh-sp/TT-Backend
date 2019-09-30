@@ -5,7 +5,10 @@ var timetable = new mongoose.Schema({
         required: true,
         unique: true
     },
-    monday: {
+    day: {
+        type: String,
+        required: true
+    },
         first: {
             type: String,
             required: true
@@ -28,7 +31,7 @@ var timetable = new mongoose.Schema({
         }
 
 
-    }
+    
 
 
 });

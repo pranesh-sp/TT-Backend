@@ -7,6 +7,7 @@ var User = require('./models/User')
 var timetable = require('./models/timetable')
 var assignment = require('./models/assignment')
 var jwt = require('jsonwebtoken')
+var config = require('./config');
 app.use(bodyParser.urlencoded({
     extended: false
 }))
@@ -34,7 +35,7 @@ app.post('/register', (req, res) => {
 
 app.post('/login', function (req, res) {
 
-    user.findOne({
+    User.findOne({
         username: req.body.username
     }, async function (err, user) {
         if (err) return res.status(500).send({
@@ -63,6 +64,7 @@ app.post('/login', function (req, res) {
             token: token
         });
     });
+
 });
 
 app.post('/addAssignment', (req, res) => {
@@ -80,6 +82,48 @@ app.post('/addAssignment', (req, res) => {
             message: err.toString()
         });
     })
+
+});
+
+app.post('/addTimetable', (req, res) => {
+
+    console.log(req);
+    var obj = req.body;
+    console.log(obj);
+    timetable.create(obj).then((doc) => {
+        console.log(doc);
+        res.status(200).send({
+            data: doc
+        });
+    }).catch((err) => {
+        res.status(500).send({
+            message: err.toString()
+        });
+    })
+
+});
+app.post('/viewTimetable', (req, res) => {
+
+    console.log(req);
+    var obj = req.body;
+    console.log(obj);
+    assignment.findOne({
+        username: req.body.username,
+        day: req.body.day
+    }, async function (err, user) {
+        if (err) return res.status(500).send({
+            message: err.toString()
+        });
+        if (!user) return res.status(400).send({
+            message: 'Invalid username'
+        });
+
+        if (user) {
+            res.status(200).send({
+                data: user
+            });
+        }
+    });
 
 });
 

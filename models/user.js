@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var UserSchema = new mongoose.Schema({
+var User = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -15,7 +15,7 @@ var UserSchema = new mongoose.Schema({
         unique: true
     }
 });
-mongoose.model('User', UserSchema);
+mongoose.model('User', User);
 
 
 module.exports = mongoose.model('User');
