@@ -107,9 +107,8 @@ app.post('/viewTimetable', (req, res) => {
     console.log(req);
     var obj = req.body;
     console.log(obj);
-    assignment.findOne({
-        username: req.body.username,
-        day: req.body.day
+    timetable.findOne({
+        username: req.body.username
     }, async function (err, user) {
         if (err) return res.status(500).send({
             message: err.toString()
