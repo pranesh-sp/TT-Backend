@@ -110,6 +110,7 @@ app.post('/viewTimetable', (req, res) => {
     timetable.findOne({
         username: req.body.username
     }, async function (err, user) {
+        
         if (err) return res.status(500).send({
             message: err.toString()
         });
@@ -166,11 +167,12 @@ app.post('/removeAssignment', (req, res) => {
         if (err) return res.status(500).send({
             message: err.toString()
         });
-        user.remove();
+       
 
         res.status(200).send({
-            message: "Assignment Removed"
+            message: "Assignment with ID: "+ user.assignment_id +" Removed"
         })
+        user.remove();
 
     });
 
