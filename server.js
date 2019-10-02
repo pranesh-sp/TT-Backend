@@ -155,22 +155,23 @@ app.post('/removeAssignment', (req, res) => {
     console.log(req);
     var obj = req.body;
     console.log(obj);
-    assignment.deleteOne({
+    assignment.findOne({
         username: req.body.username,
-        assignment_id:req.body.assignment_id
-    }, async function (err) {
+        assignment_id: req.body.assignment_id
+    }, async function (err,user) {
+        if (!user) return res.status(400).send({
+            message: 'Document Doesnt Exist'
+        });
+
         if (err) return res.status(500).send({
             message: err.toString()
         });
-      
+        user.remove();
+
         res.status(200).send({
-            message:"Assignment Removed"
+            message: "Assignment Removed"
         })
 
-    
-               
-            
-        
     });
 
 });
