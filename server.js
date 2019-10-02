@@ -149,5 +149,28 @@ app.post('/viewAssignment', (req, res) => {
     });
 
 });
+app.post('/viewAllAssignment', (req, res) => {
+
+    console.log(req);
+    var obj = req.body;
+    console.log(obj);
+    assignment.find({
+        username: req.body.username
+    }, async function (err, user) {
+        if (err) return res.status(500).send({
+            message: err.toString()
+        });
+        if (!user) return res.status(400).send({
+            message: 'Invalid username'
+        });
+
+        if (user) {
+            res.status(200).send({
+                data: user
+            });
+        }
+    });
+
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
