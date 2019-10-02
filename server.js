@@ -149,6 +149,33 @@ app.post('/viewAssignment', (req, res) => {
     });
 
 });
+
+app.post('/removeAssignment', (req, res) => {
+
+    console.log(req);
+    var obj = req.body;
+    console.log(obj);
+    assignment.deleteOne({
+        username: req.body.username,
+        assignment_id:req.body.assignment_id
+    }, async function (err) {
+        if (err) return res.status(500).send({
+            message: err.toString()
+        });
+      
+        res.status(200).send({
+            message:"Assignment Removed"
+        })
+
+    
+               
+            
+        
+    });
+
+});
+
+
 app.post('/viewAllAssignment', (req, res) => {
 
     console.log(req);
