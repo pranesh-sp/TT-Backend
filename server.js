@@ -237,7 +237,7 @@ app.post('/viewAllAssignment', (req, res) => {
 
         if (user) {
             var n=0;
-            User.find({
+            assignment.find({
                 username: req.body.username
             }).count(function(err, count){
                 
