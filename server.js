@@ -227,6 +227,7 @@ app.post('/viewAllAssignment', (req, res) => {
     assignment.find({
         username: req.body.username
     }, async function (err, user) {
+        
         if (err) return res.status(500).send({
             message: err.toString()
         });
@@ -235,9 +236,19 @@ app.post('/viewAllAssignment', (req, res) => {
         });
 
         if (user) {
-            res.status(200).send({
-                data: user
-            });
+            var n=0;
+            User.find({
+                username: req.body.username
+            }).count(function(err, count){
+                
+                console.log("Number of docs: ", count );
+                res.status(200).send({
+                    data: user,
+                    number:count
+                });
+            }).catch(console.log);
+
+            
         }
     });
 
